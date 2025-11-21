@@ -1,10 +1,13 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import { connectDB } from './config/db.js'
 
 import artistRoutes from './routes/artist.routes.js'
 import releaseRoutes from './routes/release.routes.js'
 
 dotenv.config()
+
+connectDB()
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -19,5 +22,6 @@ app.use('/api/v1/artists', artistRoutes)
 app.use('/api/v1/releases', releaseRoutes)
 
 app.listen(5000, () => {
-  console.log(`Server is running on http://localhost:${PORT}`)
+  connectDB()
+  console.log(`Server is running on port ${PORT}`)
 })
