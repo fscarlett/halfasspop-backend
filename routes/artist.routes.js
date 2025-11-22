@@ -1,10 +1,17 @@
 import express from 'express'
 
+import {
+  createArtist,
+  getAllArtists,
+  updateArtist,
+  deleteArtist,
+} from '../controllers/artist.controllers.js'
+
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.send('<p style="text-align: center;">List of artists will be here</p>')
-  // res.json({ message: 'List of artists' })
-})
+router.get('/', getAllArtists)
+router.post('/', createArtist)
+router.put('/:id', updateArtist)
+router.delete('/:id', deleteArtist)
 
 export default router
